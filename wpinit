@@ -7,7 +7,18 @@ if [ ! -f wp-cli.phar ]; then
     echo "wp-cli installed"
 fi
 
-tmpfile=/tmp/wpinit.log
+min=10000
+max=99999
+number=$[($RANDOM % ($[$max - $min] + 1)) + $min]
+tmpfile=/tmp/wpinit${number}.log
+adminpassword=$(openssl rand -base64 8)
+adminloginsuffix=$[($RANDOM % ($[$max - $min] + 1)) + $min]
+
+echo $adminpassword
+
+echo $number
+
+echo $tmpfile
 
 rm $tmpfile
 touch $tmpfile
@@ -17,26 +28,57 @@ clear
 echo "installation wordpress"
 php wp-cli.phar core download --locale=fr_FR
 
-echo -e '\n'
-echo 'db name :'
-read dbname
-
-echo -e '\n'
-echo 'db user :'
-read dbuser
-
-echo -e '\n'
-echo 'db password :'
-read dbpassword
+echo 'db information'
+read -p 'db name : ' dbname
+read -p 'db user : ' dbuser
+read -p 'db password : ' dbpassword
 
 echo "db" >> $tmpfile
+echo "----------------------------" >> $tmpfile
 echo "dbname : $dbname" >> $tmpfile
 echo "dbuser : $dbuser" >> $tmpfile
 echo "dbpass : $dbpassword" >> $tmpfile
+echo "dbprefix : wp${number}_" >> $tmpfile
+echo "----------------------------"
 
 cat $tmpfile
 
-php wp-cli.phar core config --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --locale=fr_FR
+php wp-cli.phar db reset
 
-#php wp-cli.phar core install --url= --title= --admin_user= --admin_password= --admin_email=
+php wp-cli.phar config create --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --dbprefix=wp${number}_ --locale=fr_FR
 
+echo 'site information'
+read -p 'url : ' url
+read -p 'title : ' title
+read -p 'admin login : ' adminlogin
+read -p 'admin email : ' adminemail
+
+echo "site" >> $tmpfile
+echo "----------------------------" >> $tmpfile
+echo "url : $url" >> $tmpfile
+echo "title : $title" >> $tmpfile
+echo "admin login : ${adminlogin}_${adminloginsuffix}" >> $tmpfile
+echo "admin email : $adminemail" >> $tmpfile
+echo "admin password : $adminpassword" >> $tmpfile
+echo "admin url : ${url}/wp-admin" >> $tmpfile
+echo "----------------------------"
+
+php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${adminlogin}_${adminloginsuffix}" --admin_password="$adminpassword" --admin_email="$adminemail"
+
+echo "define permalink"
+php wp-cli.phar rewrite structure '/%postname%/'
+
+echo "regenerate permalink"
+php wp-cli.phar rewrite flush
+
+cat $tmpfile
+
+echo "clean default wordpress install"
+php wp-cli.phar plugin delete hello
+php wp-cli.phar plugin delete akismet
+php wp-cli.phar plugin delete hello-dolly
+php wp-cli.phar post delete 1
+
+php wp-cli.phar option list --autoload=on
+
+#rm $tmpfile
