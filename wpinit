@@ -107,7 +107,7 @@ php wp-cli.phar option update use_smilies 0
 php wp-cli.phar option update blog_public 0
 
 cd wp-content/themes
-git clone https://cgreg21@bitbucket.org/cgreg21/genesis.git
+git clone https://github.com/cgreg21/fwk.git
 git clone https://github.com/cgreg21/wp-base-theme.git
 cd ../../
 
@@ -117,6 +117,7 @@ php wp-cli.phar theme delete twentyseventeen
 php wp-cli.phar theme delete twentysixteen
 
 php wp-cli.phar plugin install ./wp-content/themes/wp-base-theme/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/wp-base-theme/base/Plugin-Activation/plugins/gravityforms.zip --activate --force
 
 php wp-cli.phar plugin install gravityforms --activate
 php wp-cli.phar plugin install pods --activate
