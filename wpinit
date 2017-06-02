@@ -102,7 +102,7 @@ php wp-cli.phar rewrite flush
 echo "clean default wordpress install"
 php wp-cli.phar plugin delete hello
 php wp-cli.phar plugin delete akismet
-php wp-cli.phar plugin delete hello-dolly
+
 php wp-cli.phar post delete 1
 
 php wp-cli.phar option update blogdescription ''
