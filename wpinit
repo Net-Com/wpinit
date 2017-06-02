@@ -102,7 +102,6 @@ php wp-cli.phar plugin delete akismet
 php wp-cli.phar plugin delete hello-dolly
 php wp-cli.phar post delete 1
 
-php wp-cli.phar option list --autoload=on
 php wp-cli.phar option update blogdescription ''
 php wp-cli.phar option update use_smilies 0
 php wp-cli.phar option update blog_public 0
@@ -110,6 +109,22 @@ php wp-cli.phar option update blog_public 0
 cd wp-content/themes
 git clone https://cgreg21@bitbucket.org/cgreg21/genesis.git
 git clone https://github.com/cgreg21/wp-base-theme.git
+cd ../../
+
+php wp-cli.phar theme activate wp-base-theme
+php wp-cli.phar theme delete twentyfifteen
+php wp-cli.phar theme delete twentyseventeen
+php wp-cli.phar theme delete twentysixteen
+
+php wp-cli.phar plugin install ./wp-content/themes/wp-base-theme/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate --force
+
+php wp-cli.phar plugin install gravityforms --activate
+php wp-cli.phar plugin install pods --activate
+php wp-cli.phar plugin install members --activate
+php wp-cli.phar plugin install debug-bar --activate
+php wp-cli.phar plugin install debug-bar-actions-and-filters-addon --activate
+php wp-cli.phar plugin install kint-debugger --activate
+php wp-cli.phar plugin install simply-show-hooks --activate
 
 cat $tmpfile
 
