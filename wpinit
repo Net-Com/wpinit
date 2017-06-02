@@ -120,7 +120,6 @@ php wp-cli.phar theme delete twentysixteen
 php wp-cli.phar plugin install ./wp-content/themes/wp-base-theme/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate --force
 php wp-cli.phar plugin install ./wp-content/themes/wp-base-theme/base/Plugin-Activation/plugins/gravityforms.zip --activate --force
 
-php wp-cli.phar plugin install gravityforms --activate
 php wp-cli.phar plugin install pods --activate
 php wp-cli.phar plugin install members --activate
 php wp-cli.phar plugin install debug-bar --activate
