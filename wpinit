@@ -13,6 +13,8 @@ number=$[($RANDOM % ($[$max - $min] + 1)) + $min]
 tmpfile=/tmp/wpinit${number}.log
 adminpassword=$(openssl rand -base64 8)
 adminloginsuffix=$[($RANDOM % ($[$max - $min] + 1)) + $min]
+clientadminpassword=$(openssl rand -base64 8)
+clienteditorpassword=$(openssl rand -base64 8)
 
 echo $adminpassword
 
@@ -41,8 +43,6 @@ echo "dbpass : $dbpassword" >> $tmpfile
 echo "dbprefix : wp${number}_" >> $tmpfile
 echo "----------------------------"
 
-cat $tmpfile
-
 php wp-cli.phar db reset
 
 php wp-cli.phar config create --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --dbprefix=wp${number}_ --locale=fr_FR
@@ -65,13 +65,33 @@ echo "----------------------------"
 
 php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${adminlogin}_${adminloginsuffix}" --admin_password="$adminpassword" --admin_email="$adminemail"
 
+echo "client admin"
+read -p 'client admin login : ' clientadminlogin
+read -p 'client admin email : ' clientadminemail
+
+echo "client admin" >> $tmpfile
+echo "client admin login : $clientadminlogin" >> $tmpfile
+echo "client admin email : $clientadminemail" >> $tmpfile
+echo "client admin password : $clientadminpassword" >> $tmpfile
+
+php wp-cli.phar user create "${clientadminlogin}" "${clientadminemail}" --role=administrator --user_pass="${clientadminpassword}"
+
+echo "client editor"
+read -p 'client editor login : ' clienteditorlogin
+read -p 'client editor email : ' clienteditoremail
+
+echo "client editor" >> $tmpfile
+echo "client editor login : $clienteditorlogin" >> $tmpfile
+echo "client editor email : $clienteditoremail" >> $tmpfile
+echo "client editor password : $clienteditorpassword" >> $tmpfile
+
+php wp-cli.phar user create "${clienteditorlogin}" "${clienteditoremail}" --role=editor --user_pass="${clienteditorpassword}"
+
 echo "define permalink"
 php wp-cli.phar rewrite structure '/%postname%/'
 
 echo "regenerate permalink"
 php wp-cli.phar rewrite flush
-
-cat $tmpfile
 
 echo "clean default wordpress install"
 php wp-cli.phar plugin delete hello
@@ -80,5 +100,12 @@ php wp-cli.phar plugin delete hello-dolly
 php wp-cli.phar post delete 1
 
 php wp-cli.phar option list --autoload=on
+php wp-cli.phar option update blogdescription ''
+php wp-cli.phar option update use_smilies 0
+php wp-cli.phar option update blog_public 0
 
+
+cat $tmpfile
+
+mail -s "detail ${url}" ${adminemail} < $tmpfile
 #rm $tmpfile
