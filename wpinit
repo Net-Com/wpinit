@@ -108,6 +108,9 @@ php wp-cli.phar option update blogdescription ''
 php wp-cli.phar option update use_smilies 0
 php wp-cli.phar option update blog_public 0
 
+cd wp-content/themes
+git clone https://cgreg21@bitbucket.org/cgreg21/genesis.git
+git clone https://github.com/cgreg21/wp-base-theme.git
 
 cat $tmpfile
 
