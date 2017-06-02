@@ -43,9 +43,8 @@ echo "dbpass : $dbpassword" >> $tmpfile
 echo "dbprefix : wp${number}_" >> $tmpfile
 echo "----------------------------"
 
-php wp-cli.phar db reset
-
 php wp-cli.phar config create --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --dbprefix=wp${number}_ --locale=fr_FR
+php wp-cli.phar db reset
 
 echo 'site information'
 read -p 'url : ' url
