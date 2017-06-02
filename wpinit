@@ -1,0 +1,38 @@
+#!/bin/bash
+if [ ! -f wp-cli.phar ]; then
+	echo "download wp-cli"
+	echo "--------------------------------------------------------"
+    curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar 
+    echo "--------------------------------------------------------"
+    echo "wp-cli installed"
+fi
+
+rm /tmp/wpinit
+touch /tmp/wpinit
+
+clear
+
+echo "installation wordpress"
+php wp-cli.phar core download --locale=fr_FR
+
+echo -e '\n'
+echo 'db name :'
+read dbname
+
+echo -e '\n'
+echo 'db user :'
+read dbuser
+
+echo -e '\n'
+echo 'db password :'
+read dbpassword
+
+echo "db" >> /tmp/wpinit
+echo "dbname : $dbname" >> /tmp/wpinit
+echo "dbuser : $dbuser" >> /tmp/wpinit
+echo "dbpass : $dbpassword" >> /tmp/wpinit
+
+php wp-cli.phar core config --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --locale=fr_FR
+
+#php wp-cli.phar core install --url= --title= --admin_user= --admin_password= --admin_email=
+
