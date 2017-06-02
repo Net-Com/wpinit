@@ -7,8 +7,10 @@ if [ ! -f wp-cli.phar ]; then
     echo "wp-cli installed"
 fi
 
-rm /tmp/wpinit
-touch /tmp/wpinit
+tmpfile=/tmp/wpinit.log
+
+rm $tmpfile
+touch $tmpfile
 
 clear
 
@@ -27,10 +29,12 @@ echo -e '\n'
 echo 'db password :'
 read dbpassword
 
-echo "db" >> /tmp/wpinit
-echo "dbname : $dbname" >> /tmp/wpinit
-echo "dbuser : $dbuser" >> /tmp/wpinit
-echo "dbpass : $dbpassword" >> /tmp/wpinit
+echo "db" >> $tmpfile
+echo "dbname : $dbname" >> $tmpfile
+echo "dbuser : $dbuser" >> $tmpfile
+echo "dbpass : $dbpassword" >> $tmpfile
+
+cat $tmpfile
 
 php wp-cli.phar core config --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --locale=fr_FR
 
