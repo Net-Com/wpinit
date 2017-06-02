@@ -41,7 +41,7 @@ echo "dbname : $dbname" >> $tmpfile
 echo "dbuser : $dbuser" >> $tmpfile
 echo "dbpass : $dbpassword" >> $tmpfile
 echo "dbprefix : wp${number}_" >> $tmpfile
-echo "----------------------------"
+echo "----------------------------" >> $tmpfile
 
 php wp-cli.phar config create --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --dbprefix=wp${number}_ --locale=fr_FR
 php wp-cli.phar db reset
@@ -60,7 +60,7 @@ echo "admin login : ${adminlogin}_${adminloginsuffix}" >> $tmpfile
 echo "admin email : $adminemail" >> $tmpfile
 echo "admin password : $adminpassword" >> $tmpfile
 echo "admin url : ${url}/wp-admin" >> $tmpfile
-echo "----------------------------"
+echo "----------------------------" >> $tmpfile
 
 php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${adminlogin}_${adminloginsuffix}" --admin_password="$adminpassword" --admin_email="$adminemail"
 
@@ -108,6 +108,7 @@ php wp-cli.phar option update blog_public 0
 
 cd wp-content/themes
 git clone https://github.com/cgreg21/fwk.git
+mv fwk genesis
 git clone https://github.com/cgreg21/wp-base-theme.git
 cd ../../
 
