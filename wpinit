@@ -62,6 +62,9 @@ echo "admin password : $adminpassword" >> $tmpfile
 echo "admin url : ${url}/wp-admin" >> $tmpfile
 echo "----------------------------" >> $tmpfile
 
+echo ""
+echo "Install in progress... please wait"
+
 php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${adminlogin}_${adminloginsuffix}" --admin_password="$adminpassword" --admin_email="$adminemail"
 
 echo "client admin"
