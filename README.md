@@ -1,3 +1,3 @@
 wpinit
 
-wget -O ./wpinit https://raw.githubusercontent.com/cgreg21/wpinit/master/wpinit && chmod +x ./wpinit && ./wpinit
+git clone --depth 1 https://github.com/cgreg21/wpinit.git . && chmod +x ./wpinit && ./wpinit

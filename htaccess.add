@@ -1,0 +1,3 @@
+AuthName "Protected"
+AuthType Basic
+Require valid-user
