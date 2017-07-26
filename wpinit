@@ -85,8 +85,9 @@ echo "----------------------------" >> $tmpfile
 echo ""
 echo "Install in progress... please wait"
 
-php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${adminlogin}_${adminloginsuffix}" --admin_password="$adminpassword" --admin_email="$adminemail"
+php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${adminlogin}_${adminloginsuffix}" --admin_password="$adminpassword" --admin_email="$adminemail" --skip-email
 php wp-cli.phar option update siteurl $url
+php wp-cli.phar option update home $url
 
 echo "client admin"
 read -p 'client admin login : ' clientadminlogin
