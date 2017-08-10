@@ -129,8 +129,8 @@ php wp-cli.phar option update use_smilies 0
 php wp-cli.phar option update blog_public 0
 
 cd wp-content/themes
-git clone --depth 1 https://github.com/cgreg21/fwk.git genesis
-git clone --depth 1 https://github.com/cgreg21/wp-base-theme.git $sitename
+git clone --depth 1 https://github.com/Net-Com/fwk.git genesis
+git clone --depth 1 https://github.com/Net-Com/wp-base-theme.git $sitename
 #sed 's/Net.Com child theme/${title}/g' ./${sitename}/style.css > ./${sitename}/style.css
 cd ../../
 

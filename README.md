@@ -1,3 +1,3 @@
 wpinit
 
-git clone --depth 1 https://github.com/cgreg21/wpinit.git . && chmod +x ./wpinit && ./wpinit
+git clone --depth 1 https://github.com/Net-Com/wpinit.git . && chmod +x ./wpinit && ./wpinit
