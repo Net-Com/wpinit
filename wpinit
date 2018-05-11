@@ -139,27 +139,40 @@ php wp-cli.phar theme delete twentyfifteen
 php wp-cli.phar theme delete twentyseventeen
 php wp-cli.phar theme delete twentysixteen
 
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate --force
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/gravityforms.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/profilepress.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/admin-columns-pro.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/wp-rocket.zip --activate --force
 
 php wp-cli.phar plugin install pods --activate
+php wp-cli.phar plugin install panda-pods-repeater-field --activate
+php wp-cli.phar plugin install redux-framework --activate
 php wp-cli.phar plugin install members --activate
+php wp-cli.phar plugin install ewww-image-optimizer --activate
+php wp-cli.phar plugin install regenerate-thumbnails --activate
+php wp-cli.phar plugin install crop-thumbnails --activate
+php wp-cli.phar plugin install better-wp-security --activate
+php wp-cli.phar plugin install wordpress-seo --activate
+php wp-cli.phar plugin install redirection --activate
+php wp-cli.phar plugin install broken-link-checker --activate
+php wp-cli.phar plugin install ps-auto-sitemap --activate
+php wp-cli.phar plugin install google-analytics-dashboard-for-wp --activate
+php wp-cli.phar plugin install material-admin-theme --activate
+php wp-cli.phar plugin install tabify-edit-screen --activate
+php wp-cli.phar plugin install tinymce-advanced --activate
+php wp-cli.phar plugin install aceide --activate
+php wp-cli.phar plugin install wp-config-file-editor --activate
 php wp-cli.phar plugin install debug-bar --activate
 php wp-cli.phar plugin install debug-bar-actions-and-filters-addon --activate
 php wp-cli.phar plugin install kint-debugger --activate
 php wp-cli.phar plugin install simply-show-hooks --activate
-php wp-cli.phar plugin install better-wp-security --activate
-php wp-cli.phar plugin install wordpress-seo --activate
-php wp-cli.phar plugin install tinymce-advanced --activate
-php wp-cli.phar plugin install regenerate-thumbnails --activate
-php wp-cli.phar plugin install google-analytics-dashboard-for-wp --activate
-php wp-cli.phar plugin install redirection --activate
-php wp-cli.phar plugin install ewww-image-optimizer --activate
-php wp-cli.phar plugin install broken-link-checker --activate
-php wp-cli.phar plugin install ps-auto-sitemap --activate
-php wp-cli.phar plugin install aceide --activate
-php wp-cli.phar plugin install wp-config-file-editor --activate
-php wp-cli.phar plugin install material-admin-theme --activate
+
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Edit-Custom.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Genesis-Maker.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_disable_delete_page.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_responsive_table.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_search.zip --activate --force
 
 echo "${sitename}:MqiKIHH7L1K9s" > .htpasswd
 
