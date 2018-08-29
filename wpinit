@@ -1,10 +1,11 @@
 #!/bin/bash
+
 if [ ! -f wp-cli.phar ]; then
-	echo "download wp-cli"
+	echo "downloading wp-cli"
 	echo "--------------------------------------------------------"
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-    echo "--------------------------------------------------------"
-    echo "wp-cli installed"
+  echo "--------------------------------------------------------"
+  echo "wp-cli installed"
 fi
 
 min=10000
@@ -23,7 +24,10 @@ echo $number
 
 echo $tmpfile
 
-rm $tmpfile
+if [ ! -f $tmpfile ]; then
+  rm $tmpfile
+fi
+
 touch $tmpfile
 
 clear
@@ -39,47 +43,47 @@ if [ -d $currentpath"/wp-content" ]; then
   fi
 fi
 
-echo "installation wordpress"
+echo "WordPress Installation"
 php wp-cli.phar core download --locale=fr_FR
 
-echo 'db information'
-read -p 'db name : ' dbname
-read -p 'db user : ' dbuser
-read -p 'db password : ' dbpassword
+echo 'DB Informations'
+read -p 'DB name : ' dbname
+read -p 'DB user : ' dbuser
+read -p 'DB password : ' dbpassword
 
-echo "db" >> $tmpfile
+echo "Database" >> $tmpfile
 echo "----------------------------" >> $tmpfile
-echo "dbname : $dbname" >> $tmpfile
-echo "dbuser : $dbuser" >> $tmpfile
-echo "dbpass : $dbpassword" >> $tmpfile
-echo "dbprefix : wp${number}_" >> $tmpfile
+echo "DB name : $dbname" >> $tmpfile
+echo "DB user : $dbuser" >> $tmpfile
+echo "DB password : $dbpassword" >> $tmpfile
+echo "DB prefix : wp${number}_" >> $tmpfile
 echo "----------------------------" >> $tmpfile
-
-#php wp-cli.phar config create --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --dbprefix=wp${number}_ --locale=fr_FR
 
 php wp-cli.phar core config --dbname=$dbname --dbuser=$dbuser --dbpass=$dbpassword --dbprefix=wp${number}_ --locale=fr_FR --extra-php <<PHP
-define( 'WP_DEBUG', true );
-define( 'DISALLOW_FILE_EDIT', true );
+define('WP_DEBUG', true);
+define('DISALLOW_FILE_EDIT', true);
+define('AUTOMATIC_UPDATER_DISABLED', true);
+define('WP_AUTO_UPDATE_CORE', false);
 PHP
 
 php wp-cli.phar db reset
 
-echo 'site information'
-read -p 'sitename "for htpasswd login and theme name"  : ' sitename
-read -p 'url : ' url
-read -p 'title : ' title
-read -p 'admin login : ' adminlogin
-read -p 'admin email : ' adminemail
+echo 'Site Informations'
+read -p 'Sitename (htpasswd login & theme name)  : ' sitename
+read -p 'URL (full) : ' url
+read -p 'Title : ' title
+read -p 'Admin login : ' adminlogin
+read -p 'Admin email : ' adminemail
 
-echo "site" >> $tmpfile
+echo "Site" >> $tmpfile
 echo "----------------------------" >> $tmpfile
-echo "sitename : $sitename" >> $tmpfile
-echo "url : $url" >> $tmpfile
-echo "title : $title" >> $tmpfile
-echo "admin login : ${adminlogin}_${adminloginsuffix}" >> $tmpfile
-echo "admin email : $adminemail" >> $tmpfile
-echo "admin password : $adminpassword" >> $tmpfile
-echo "admin url : ${url}/wp-admin" >> $tmpfile
+echo "Sitename : $sitename" >> $tmpfile
+echo "URL : $url" >> $tmpfile
+echo "Title : $title" >> $tmpfile
+echo "Admin login : ${adminlogin}_${adminloginsuffix}" >> $tmpfile
+echo "Admin email : $adminemail" >> $tmpfile
+echo "Admin password : $adminpassword" >> $tmpfile
+echo "Admin URL : ${url}/wp-admin" >> $tmpfile
 echo "----------------------------" >> $tmpfile
 
 echo ""
@@ -89,41 +93,39 @@ php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${admin
 php wp-cli.phar option update siteurl $url
 php wp-cli.phar option update home $url
 
-echo "client admin"
-read -p 'client admin login : ' clientadminlogin
-read -p 'client admin email : ' clientadminemail
+#echo "client admin"
+#read -p 'client admin login : ' clientadminlogin
+#read -p 'client admin email : ' clientadminemail
 
-echo "client admin" >> $tmpfile
-echo "----------------------------" >> $tmpfile
-echo "client admin login : $clientadminlogin" >> $tmpfile
-echo "client admin email : $clientadminemail" >> $tmpfile
-echo "client admin password : $clientadminpassword" >> $tmpfile
-echo "----------------------------" >> $tmpfile
+#echo "client admin" >> $tmpfile
+#echo "----------------------------" >> $tmpfile
+#echo "client admin login : $clientadminlogin" >> $tmpfile
+#echo "client admin email : $clientadminemail" >> $tmpfile
+#echo "client admin password : $clientadminpassword" >> $tmpfile
+#echo "----------------------------" >> $tmpfile
 
-php wp-cli.phar user create "${clientadminlogin}" "${clientadminemail}" --role=administrator --user_pass="${clientadminpassword}"
+#php wp-cli.phar user create "${clientadminlogin}" "${clientadminemail}" --role=administrator --user_pass="${clientadminpassword}"
 
-echo "client editor"
-read -p 'client editor login : ' clienteditorlogin
-read -p 'client editor email : ' clienteditoremail
+#echo "client editor"
+#read -p 'client editor login : ' clienteditorlogin
+#read -p 'client editor email : ' clienteditoremail
 
-echo "client editor" >> $tmpfile
-echo "----------------------------" >> $tmpfile
-echo "client editor login : $clienteditorlogin" >> $tmpfile
-echo "client editor email : $clienteditoremail" >> $tmpfile
-echo "client editor password : $clienteditorpassword" >> $tmpfile
-echo "----------------------------" >> $tmpfile
+#echo "client editor" >> $tmpfile
+#echo "----------------------------" >> $tmpfile
+#echo "client editor login : $clienteditorlogin" >> $tmpfile
+#echo "client editor email : $clienteditoremail" >> $tmpfile
+#echo "client editor password : $clienteditorpassword" >> $tmpfile
+#echo "----------------------------" >> $tmpfile
 
-php wp-cli.phar user create "${clienteditorlogin}" "${clienteditoremail}" --role=editor --user_pass="${clienteditorpassword}"
+#php wp-cli.phar user create "${clienteditorlogin}" "${clienteditoremail}" --role=editor --user_pass="${clienteditorpassword}"
 
-echo "define permalink"
+echo "Defining permalinks"
 php wp-cli.phar rewrite structure '/%postname%/'
 
-echo "clean default wordpress install"
-php wp-cli.phar plugin delete hello
+echo "Cleaning default WordPress installation"
+php wp-cli.phar plugin delete hello-dolly
 php wp-cli.phar plugin delete akismet
-
 php wp-cli.phar post delete 1
-
 php wp-cli.phar option update blogdescription ''
 php wp-cli.phar option update use_smilies 0
 php wp-cli.phar option update blog_public 0
@@ -138,11 +140,6 @@ php wp-cli.phar theme activate ${sitename}
 php wp-cli.phar theme delete twentyfifteen
 php wp-cli.phar theme delete twentyseventeen
 php wp-cli.phar theme delete twentysixteen
-
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/gravityforms.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/profilepress.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/admin-columns-pro.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/wp-rocket.zip --activate --force
 
 php wp-cli.phar plugin install pods --activate
 php wp-cli.phar plugin install panda-pods-repeater-field --activate
@@ -160,19 +157,22 @@ php wp-cli.phar plugin install google-analytics-dashboard-for-wp --activate
 php wp-cli.phar plugin install material-admin-theme --activate
 php wp-cli.phar plugin install tabify-edit-screen --activate
 php wp-cli.phar plugin install tinymce-advanced --activate
-php wp-cli.phar plugin install aceide --activate
 php wp-cli.phar plugin install wp-config-file-editor --activate
 php wp-cli.phar plugin install debug-bar --activate
 php wp-cli.phar plugin install debug-bar-actions-and-filters-addon --activate
 php wp-cli.phar plugin install kint-debugger --activate
 php wp-cli.phar plugin install simply-show-hooks --activate
 
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Edit-Custom.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Genesis-Maker.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_disable_delete_page.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_responsive_table.zip --activate --force
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_search.zip --activate --force
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/gravityforms.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/profilepress.zip
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/admin-columns-pro.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/wp-rocket.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Edit-Custom.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Genesis-Maker.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_disable_delete_page.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_responsive_table.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_search.zip --activate
 
 echo "${sitename}:MqiKIHH7L1K9s" > .htpasswd
 
@@ -183,11 +183,11 @@ echo "AuthUserFile ${currentpath}/.htpasswd" >> htaccess.add
 cat htaccess.add .htaccess > .htaccess
 rm htaccess.add
 
-echo "regenerate permalink"
+echo "Regenerating permalinks"
 php wp-cli.phar rewrite flush --hard
 
+echo "Creating homepage"
 php wp-cli.phar post create --post_type=page --post_title=Home --post_status=publish --post_author=$(php wp-cli.phar user get ${adminlogin}_${adminloginsuffix} --field=ID --format=ids)
-
 php wp-cli.phar option update show_on_front 'page'
 php wp-cli.phar option update page_on_front $(php wp-cli.phar post list --post_type=page --post_status=publish --posts_per_page=1 --pagename=home --field=ID --format=ids)
 
@@ -197,8 +197,8 @@ for pageid in $(php wp-cli.phar post list --order="ASC" --orderby="date" --post_
 	php wp-cli.phar menu item add-post main-navigation $pageid
 done
 
-# assign navigaiton to primary location
 php wp-cli.phar menu location assign main-navigation primary
+
 echo "Update language"
 php wp-cli.phar core language update
 
