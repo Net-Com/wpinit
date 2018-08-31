@@ -24,7 +24,7 @@ echo $number
 
 echo $tmpfile
 
-if [ ! -f $tmpfile ]; then
+if [ -f $tmpfile ]; then
   rm $tmpfile
 fi
 
