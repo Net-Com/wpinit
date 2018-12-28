@@ -107,7 +107,6 @@ php wp-cli.phar option update blog_public 0
 cd wp-content/themes
 git clone --depth 1 https://github.com/Net-Com/fwk.git genesis
 git clone --depth 1 https://github.com/Net-Com/wp-base-theme.git $sitename
-#sed 's/Net.Com child theme/${title}/g' ./${sitename}/style.css > ./${sitename}/style.css
 cd ../../
 
 php wp-cli.phar theme activate ${sitename}
@@ -147,6 +146,8 @@ php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activ
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_disable_delete_page.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_responsive_table.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_search.zip --activate
+
+php wp-cli.phar plugin update --all
 
 echo "${sitename}:MqiKIHH7L1K9s" > .htpasswd
 
