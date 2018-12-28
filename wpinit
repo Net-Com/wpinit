@@ -137,6 +137,7 @@ php wp-cli.phar plugin install debug-bar --activate
 php wp-cli.phar plugin install debug-bar-actions-and-filters-addon --activate
 php wp-cli.phar plugin install kint-debugger --activate
 php wp-cli.phar plugin install simply-show-hooks --activate
+php wp-cli.phar plugin install elementor --activate
 
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/gravityforms.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/profilepress.zip
