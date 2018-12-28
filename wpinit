@@ -132,7 +132,6 @@ php wp-cli.phar plugin install google-analytics-dashboard-for-wp --activate
 php wp-cli.phar plugin install material-admin-theme --activate
 php wp-cli.phar plugin install tabify-edit-screen --activate
 php wp-cli.phar plugin install tinymce-advanced --activate
-php wp-cli.phar plugin install wp-config-file-editor --activate
 php wp-cli.phar plugin install debug-bar --activate
 php wp-cli.phar plugin install debug-bar-actions-and-filters-addon --activate
 php wp-cli.phar plugin install kint-debugger --activate
