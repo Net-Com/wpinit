@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! -f wp-cli.phar ]; then
-	echo "downloading wp-cli"
+	echo "Downloading wp-cli"
 	echo "--------------------------------------------------------"
     curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
   echo "--------------------------------------------------------"
@@ -178,7 +178,7 @@ done
 
 php wp-cli.phar menu location assign main-navigation primary
 
-echo "Update language"
+echo "Update core language"
 php wp-cli.phar core language update
 
 cat $tmpfile
