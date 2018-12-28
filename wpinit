@@ -93,32 +93,6 @@ php wp-cli.phar core install --url="$url" --title="$title" --admin_user="${admin
 php wp-cli.phar option update siteurl $url
 php wp-cli.phar option update home $url
 
-#echo "client admin"
-#read -p 'client admin login : ' clientadminlogin
-#read -p 'client admin email : ' clientadminemail
-
-#echo "client admin" >> $tmpfile
-#echo "----------------------------" >> $tmpfile
-#echo "client admin login : $clientadminlogin" >> $tmpfile
-#echo "client admin email : $clientadminemail" >> $tmpfile
-#echo "client admin password : $clientadminpassword" >> $tmpfile
-#echo "----------------------------" >> $tmpfile
-
-#php wp-cli.phar user create "${clientadminlogin}" "${clientadminemail}" --role=administrator --user_pass="${clientadminpassword}"
-
-#echo "client editor"
-#read -p 'client editor login : ' clienteditorlogin
-#read -p 'client editor email : ' clienteditoremail
-
-#echo "client editor" >> $tmpfile
-#echo "----------------------------" >> $tmpfile
-#echo "client editor login : $clienteditorlogin" >> $tmpfile
-#echo "client editor email : $clienteditoremail" >> $tmpfile
-#echo "client editor password : $clienteditorpassword" >> $tmpfile
-#echo "----------------------------" >> $tmpfile
-
-#php wp-cli.phar user create "${clienteditorlogin}" "${clienteditoremail}" --role=editor --user_pass="${clienteditorpassword}"
-
 echo "Defining permalinks"
 php wp-cli.phar rewrite structure '/%postname%/'
 
