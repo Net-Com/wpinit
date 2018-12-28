@@ -107,6 +107,8 @@ php wp-cli.phar option update blog_public 0
 cd wp-content/themes
 git clone --depth 1 https://github.com/Net-Com/fwk.git genesis
 git clone --depth 1 https://github.com/Net-Com/wp-base-theme.git $sitename
+cd ../plugins
+git clone --depth 1 https://gitlab.com/net-com/nc_master.git nc_master
 cd ../../
 
 php wp-cli.phar theme activate ${sitename}
