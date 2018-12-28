@@ -141,7 +141,7 @@ php wp-cli.phar plugin install simply-show-hooks --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/gravityforms.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/profilepress.zip
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/admin-columns-pro.zip --activate
-php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/wp-rocket.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/wp-rocket.zip
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_tpl_render.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Edit-Custom.zip
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/Pods-Genesis-Maker.zip --activate
