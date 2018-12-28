@@ -150,6 +150,7 @@ php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activ
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_disable_delete_page.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_responsive_table.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_search.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/wp-all-import-pro.zip --activate
 
 php wp-cli.phar plugin update --all
 
