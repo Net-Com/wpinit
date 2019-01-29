@@ -124,12 +124,12 @@ php wp-cli.phar plugin install members --activate
 php wp-cli.phar plugin install ewww-image-optimizer --activate
 php wp-cli.phar plugin install regenerate-thumbnails --activate
 php wp-cli.phar plugin install crop-thumbnails --activate
-php wp-cli.phar plugin install better-wp-security --activate
+php wp-cli.phar plugin install better-wp-security
 php wp-cli.phar plugin install wordpress-seo --activate
 php wp-cli.phar plugin install redirection --activate
 php wp-cli.phar plugin install broken-link-checker --activate
 php wp-cli.phar plugin install ps-auto-sitemap --activate
-php wp-cli.phar plugin install google-analytics-dashboard-for-wp --activate
+php wp-cli.phar plugin install google-analytics-dashboard-for-wp
 php wp-cli.phar plugin install material-admin-theme --activate
 php wp-cli.phar plugin install tabify-edit-screen --activate
 php wp-cli.phar plugin install tinymce-advanced --activate
@@ -139,6 +139,7 @@ php wp-cli.phar plugin install kint-debugger --activate
 php wp-cli.phar plugin install simply-show-hooks --activate
 php wp-cli.phar plugin install elementor --activate
 php wp-cli.phar plugin install email-templates --activate
+php wp-cli.phar plugin install admin-menu-editor --activate
 
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/gravityforms.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/profilepress.zip
