@@ -154,6 +154,7 @@ php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activ
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/nc_search.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/wp-all-import-pro.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/devel-helper.zip --activate
+php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/searchwp.zip --activate
 
 php wp-cli.phar plugin update --all
 
