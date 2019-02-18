@@ -141,6 +141,7 @@ php wp-cli.phar plugin install elementor --activate
 php wp-cli.phar plugin install email-templates --activate
 php wp-cli.phar plugin install admin-menu-editor --activate
 php wp-cli.phar plugin install loco-translate --activate
+php wp-cli.phar plugin install email-encoder-bundle --activate
 
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/gravityforms.zip --activate
 php wp-cli.phar plugin install ./wp-content/themes/${sitename}/base/Plugin-Activation/plugins/profilepress.zip
